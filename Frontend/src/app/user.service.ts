@@ -10,7 +10,7 @@ export class UserService {
 
   constructor(private http:HttpClient) { }
 
-  signup(data: any){
+  signup(data:any){
    return this.http.post<any>(`${this.server_address}/login/signup`,{data:data})
   }
 

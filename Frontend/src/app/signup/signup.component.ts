@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 
 @Component({
@@ -17,11 +18,19 @@ export class SignupComponent implements OnInit {
     checkbox:false
   }
 
-  constructor(private userService:UserService) { }
+  constructor(private userService:UserService , private route:Router) { }
 
   signup(){
-    this.userService.signup(this.user)
-  }
+    this.userService.signup(this.user).subscribe((res)=>{
+
+      if(res.status){
+        this.route.navigate(['login'])
+       }else{
+        alert("Email already taken")
+        window.location.reload();
+       };
+    });
+};
 
   ngOnInit(): void {
   }
