@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-signup',
@@ -16,10 +17,10 @@ export class SignupComponent implements OnInit {
     checkbox:false
   }
 
-  constructor() { }
+  constructor(private userService:UserService) { }
 
   signup(){
-    alert(this.user.role)
+    this.userService.signup(this.user)
   }
 
   ngOnInit(): void {
