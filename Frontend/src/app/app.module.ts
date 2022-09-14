@@ -8,6 +8,11 @@ import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CoursesComponent } from './courses/courses.component';
+import { AdminloginComponent } from './adminlogin/adminlogin.component';
+import { StudentloginComponent } from './studentlogin/studentlogin.component';
+import { SignupComponent } from './signup/signup.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -16,11 +21,16 @@ import { CoursesComponent } from './courses/courses.component';
     LoginComponent,
     HeaderComponent,
     FooterComponent,
-    CoursesComponent
+    CoursesComponent,
+    AdminloginComponent,
+    StudentloginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

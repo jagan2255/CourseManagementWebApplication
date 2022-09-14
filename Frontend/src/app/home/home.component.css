@@ -1,6 +1,7 @@
 .home22{
     min-height: 90vh;
     padding-top: 3px;
+    background-color: rgba(245, 222, 179, 0.144);
 
 
 }
@@ -11,8 +12,7 @@
     background-attachment: fixed;
     background-size: 100% 100%;
     height: 88vh;
-
-     display: flex;
+    display: flex;
     justify-content: center;
     padding-top: 27vh;
     color: white;
