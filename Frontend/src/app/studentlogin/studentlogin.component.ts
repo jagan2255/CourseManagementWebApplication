@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-studentlogin',
@@ -9,13 +11,28 @@ export class StudentloginComponent implements OnInit {
 
   user={
     email:"",
-    password:""
+    password:"",
+    role:"Student"
   }
 
-  constructor() { }
+  constructor(private userService:UserService , private route:Router) { }
 
   loginuser(){
-    alert("Sucess")
+    this.userService.studentlogin(this.user).subscribe((res)=>{
+
+      if(res.status){
+        localStorage.setItem('token' , res.token)
+        // this.route.navigate(['/student'])
+        alert("Sucess")
+
+       }else{
+        console.log(res.data)
+        var error = res.data
+        alert(error);
+       }
+
+
+    })
   }
 
   ngOnInit(): void {

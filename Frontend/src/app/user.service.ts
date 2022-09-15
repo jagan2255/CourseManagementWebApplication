@@ -14,6 +14,20 @@ export class UserService {
    return this.http.post<any>(`${this.server_address}/login/signup`,{data:data})
   }
 
+  studentlogin(data:any){
+    return this.http.post<any>(`${this.server_address}/login/studentlogin`,{data:data})
+
+  }
+
+  professorlogin(data:any){
+    return this.http.post<any>(`${this.server_address}/login/professorlogin`,{data:data})
+
+  }
+
+  coursecomponent(){
+    return this.http.get<any>(`${this.server_address}/home/course`)
+  }
+
 
 
 }

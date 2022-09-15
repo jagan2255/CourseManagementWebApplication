@@ -42,6 +42,80 @@ router.post("/signup" , (req,res)=>{
 });
 
 
+router.post("/professorlogin" , (req,res)=>{
+  res.header("Access-Control-Allow-Orgin", "*");
+  res.header("Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS");
+
+  var admin = req.body.data;
+  console.log(admin);
+
+  userdata.findOne({email:admin.email.trim() , role:admin.role})
+  .then((data)=>{
+
+    //console.log(data.id); 
+    if(data===null){
+        res.send({ status: false, data: 'Invalid Username and Password'})
+    }else { 
+      console.log(data)
+        bcrypt.compare(admin.password , data.password , function(err, result) {
+          if (result) {
+            console.log(result)
+            let payload = {subject:data.email};
+            let tokens = jwt.sign(payload , "hiddenkey")
+            var email = data.email;
+            res.send({ status: true, data: 'Success', email , tokens})
+         }
+         else{
+              res.send({ status: false, data: 'Incorrect Username or Password'})
+          }
+      });
+       
+    }
+
+
+  });
+
+  
+
+});
+
+
+router.post("/studentlogin" , (req,res)=>{
+  res.header("Access-Control-Allow-Orgin", "*");
+  res.header("Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS");
+
+  var student =req.body.data
+
+  console.log(student.email , student.password , student.role);
+
+  userdata.findOne({email:student.email.trim() , role:student.role})
+  .then((data)=>{
+
+    //console.log(data.id); 
+    if(data===null){
+        res.send({ status: false, data: 'Invalid Username and Password'})
+    }else { 
+      console.log(data)
+        bcrypt.compare(student.password , data.password , function(err, result) {
+          if (result) {
+            console.log(result)
+            let payload = {subject:data.email};
+            let token = jwt.sign(payload , "secretkey")
+            var email = data.email;
+            res.send({ status: true, data: 'Success', email , token})
+         }
+         else{
+              res.send({ status: false, data: 'Incorrect Username or Password'})
+          }
+      });
+       
+    }
+
+
+  });
+});
+
+
 
 
 

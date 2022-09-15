@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-adminlogin',
@@ -10,15 +12,30 @@ export class AdminloginComponent implements OnInit {
   admin={
 
     email:"",
-    password:""
+    password:"",
+    role:"Professor"
 
   }
 
-  constructor() { }
+  constructor(private userService:UserService , private route:Router) { }
+
 
   adminlogin(){
-   alert("Sucess")
+    this.userService.professorlogin(this.admin).subscribe((res)=>{
+
+      if(res.status){
+        localStorage.setItem('tokens' , res.tokens)
+        // this.route.navigate(['/professor'])
+        alert("Sucess")
+
+       }else{
+        console.log(res.data)
+        var error = res.data
+        alert(error);
+       }
+    })
   }
+
 
   ngOnInit(): void {
   }
