@@ -25,8 +25,7 @@ export class AdminloginComponent implements OnInit {
 
       if(res.status){
         localStorage.setItem('tokens' , res.tokens)
-        // this.route.navigate(['/professor'])
-        alert("Sucess")
+        this.route.navigate(['/professor'])
 
        }else{
         console.log(res.data)

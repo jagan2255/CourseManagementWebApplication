@@ -102,7 +102,8 @@ router.post("/studentlogin" , (req,res)=>{
             let payload = {subject:data.email};
             let token = jwt.sign(payload , "secretkey")
             var email = data.email;
-            res.send({ status: true, data: 'Success', email , token})
+            var username = data.username
+            res.send({ status: true, data: 'Success', email , token , username})
          }
          else{
               res.send({ status: false, data: 'Incorrect Username or Password'})

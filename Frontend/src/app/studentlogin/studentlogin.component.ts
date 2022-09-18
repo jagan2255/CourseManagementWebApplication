@@ -22,8 +22,9 @@ export class StudentloginComponent implements OnInit {
 
       if(res.status){
         localStorage.setItem('token' , res.token)
-        // this.route.navigate(['/student'])
-        alert("Sucess")
+        localStorage.setItem('email' , res.email)
+        localStorage.setItem('username' , res.username)
+        this.route.navigate(['/student'])
 
        }else{
         console.log(res.data)

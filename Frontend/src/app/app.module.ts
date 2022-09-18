@@ -12,7 +12,12 @@ import { AdminloginComponent } from './adminlogin/adminlogin.component';
 import { StudentloginComponent } from './studentlogin/studentlogin.component';
 import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { StudentComponent } from './student/student.component';
+import { ProfessorComponent } from './professor/professor.component';
+import { StudenthomeComponent } from './studenthome/studenthome.component';
+import { StudentEnrollComponent } from './student-enroll/student-enroll.component';
+import { ProfessorDashboardComponent } from './professor-dashboard/professor-dashboard.component'
 
 @NgModule({
   declarations: [
@@ -24,7 +29,12 @@ import { HttpClientModule } from '@angular/common/http'
     CoursesComponent,
     AdminloginComponent,
     StudentloginComponent,
-    SignupComponent
+    SignupComponent,
+    StudentComponent,
+    ProfessorComponent,
+    StudenthomeComponent,
+    StudentEnrollComponent,
+    ProfessorDashboardComponent
   ],
   imports: [
     BrowserModule,
