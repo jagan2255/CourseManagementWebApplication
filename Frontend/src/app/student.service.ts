@@ -10,7 +10,12 @@ export class StudentService {
 
   constructor(private http:HttpClient) { }
 
-  enrollstudent(){
-   return this.http.get(`${this.server_address}/student/enrollstudent`)
+  enrollstudent(data:any){
+   return this.http.post(`${this.server_address}/student/enrollstudent`,data).subscribe((data)=>{
+    console.log(data)
+   })
   }
+
+
+
 }

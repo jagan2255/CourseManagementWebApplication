@@ -17,7 +17,9 @@ import { StudentComponent } from './student/student.component';
 import { ProfessorComponent } from './professor/professor.component';
 import { StudenthomeComponent } from './studenthome/studenthome.component';
 import { StudentEnrollComponent } from './student-enroll/student-enroll.component';
-import { ProfessorDashboardComponent } from './professor-dashboard/professor-dashboard.component'
+import { ProfessorDashboardComponent } from './professor-dashboard/professor-dashboard.component';
+import { AddcourseComponent } from './addcourse/addcourse.component';
+import { StudentRequestsComponent } from './student-requests/student-requests.component'
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { ProfessorDashboardComponent } from './professor-dashboard/professor-das
     ProfessorComponent,
     StudenthomeComponent,
     StudentEnrollComponent,
-    ProfessorDashboardComponent
+    ProfessorDashboardComponent,
+    AddcourseComponent,
+    StudentRequestsComponent
   ],
   imports: [
     BrowserModule,

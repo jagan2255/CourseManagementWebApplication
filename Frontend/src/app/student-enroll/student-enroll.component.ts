@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { StudentService } from '../student.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -30,10 +32,13 @@ export class StudentEnrollComponent implements OnInit {
 
   
 
-  constructor(private userService:UserService) { }
+  constructor(private userService:UserService , private studentService:StudentService ,private route:Router) { }
 
   enroll(){
-    alert(this.enrolldata.course)
+    this.studentService.enrollstudent(this.enrolldata)
+    alert("Sucessfully Registered")
+    this.route.navigate(["/student"])
+
   }
 
   ngOnInit(): void {

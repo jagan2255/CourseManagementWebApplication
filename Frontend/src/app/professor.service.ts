@@ -13,4 +13,13 @@ export class ProfessorService {
   getCount(){
    return this.http.get(`${this.server_address}/professor/getcount`)
   }
+
+  getrequest(){
+    return this.http.get(`${this.server_address}/professor/getrequest`)
+  }
+
+  rejectstudent(id:any){
+    return this.http.delete(`${this.server_address}/professor/deletreq/${id}`,)
+  }
+
 }
