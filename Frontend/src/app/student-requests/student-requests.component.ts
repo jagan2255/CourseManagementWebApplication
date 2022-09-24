@@ -27,6 +27,11 @@ export class StudentRequestsComponent implements OnInit {
    }
   }
 
+  approvestudent(id:any){
+    localStorage.setItem("uid" , id._id)
+    this.route.navigate(["/professor/approvestudent"])
+  }
+
   ngOnInit(): void {
     this.professorService.getrequest().subscribe((data)=>{
       this.studentData=JSON.parse(JSON.stringify(data))

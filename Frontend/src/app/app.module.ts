@@ -19,7 +19,11 @@ import { StudenthomeComponent } from './studenthome/studenthome.component';
 import { StudentEnrollComponent } from './student-enroll/student-enroll.component';
 import { ProfessorDashboardComponent } from './professor-dashboard/professor-dashboard.component';
 import { AddcourseComponent } from './addcourse/addcourse.component';
-import { StudentRequestsComponent } from './student-requests/student-requests.component'
+import { StudentRequestsComponent } from './student-requests/student-requests.component';
+import { ApprovestudentComponent } from './approvestudent/approvestudent.component';
+import { ApprovedstudentsComponent } from './approvedstudents/approvedstudents.component';
+import { CreatealertComponent } from './createalert/createalert.component';
+import { MessageComponent } from './message/message.component'
 
 @NgModule({
   declarations: [
@@ -38,7 +42,11 @@ import { StudentRequestsComponent } from './student-requests/student-requests.co
     StudentEnrollComponent,
     ProfessorDashboardComponent,
     AddcourseComponent,
-    StudentRequestsComponent
+    StudentRequestsComponent,
+    ApprovestudentComponent,
+    ApprovedstudentsComponent,
+    CreatealertComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,

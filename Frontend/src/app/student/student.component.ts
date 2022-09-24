@@ -32,6 +32,8 @@ export class StudentComponent implements OnInit {
   btnclk6(){
   }
   btnclk7(){
+    this.route.navigate(["/student/message"])
+
   }
 
 

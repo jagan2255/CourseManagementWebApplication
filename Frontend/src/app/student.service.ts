@@ -17,5 +17,9 @@ export class StudentService {
   }
 
 
+  messagedata(id:any){
+    return this.http.get(`${this.server_address}/student/messagedata/${id}`)
+  }
+
 
 }

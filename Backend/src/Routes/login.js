@@ -63,7 +63,8 @@ router.post("/professorlogin" , (req,res)=>{
             let payload = {subject:data.email};
             let tokens = jwt.sign(payload , "hiddenkey")
             var email = data.email;
-            res.send({ status: true, data: 'Success', email , tokens})
+            var name = data.username
+            res.send({ status: true, data: 'Success', email ,name, tokens})
          }
          else{
               res.send({ status: false, data: 'Incorrect Username or Password'})

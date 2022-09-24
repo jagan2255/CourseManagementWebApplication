@@ -21,6 +21,8 @@ export class ProfessorComponent implements OnInit {
   }
 
   btnclk3(){
+    this.route.navigate(["/professor/approvedstudents"])
+
   }
 
   btnclk4(){
@@ -31,6 +33,7 @@ export class ProfessorComponent implements OnInit {
   }
   
   btnclk6(){
+    this.route.navigate(["/professor/alertstudent"])
   }
   btnclk7(){
     this.route.navigate(["/professor/studentrequest"])

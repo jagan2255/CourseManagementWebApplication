@@ -26,7 +26,7 @@
                     <div class="card-body">
                       <i class="fa fa-address-card" style="font-size:60px;color:violet;"></i>
                       <div class="float-end">
-                        <h2 class="text-center">0</h2>
+                        <h2 class="text-center">{{datacount[2]}}</h2>
                         <h5>Approved Students</h5>
                       </div>
                     </div>
@@ -63,11 +63,11 @@
               </tr>
             </thead>
             <tbody class="tbody22">
-              <tr>
-                <td scope="row" class="text-uppercase">1</td>
-                <td class="text-uppercase">1</td>
-                <td class="text-uppercase">1</td>
-                <td class="text-uppercase">1</td>
+              <tr *ngFor=" let student of studentData">
+                <td scope="row" class="text-uppercase">{{student.username}}</td>
+                <td class="text-uppercase">{{student.qualification}}</td>
+                <td class="text-uppercase">{{student.course}}</td>
+                <td class="text-uppercase">{{student.datejoin}}</td>
               </tr>
             </tbody>
           </table>

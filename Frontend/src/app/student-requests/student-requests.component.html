@@ -23,7 +23,7 @@
                 <td>{{student.email}}</td>
                 <td>{{student.course}}</td>
                 <td class="text-center">
-                    <button class="btn btn-success me-2 shadow"><i class="fa-solid fa-check"></i> APPROVE</button>
+                    <button (click)="approvestudent(student)" class="btn btn-success me-2 shadow"><i class="fa-solid fa-check"></i> APPROVE</button>
                     <button class="btn btn-danger shadow" (click)="rejectstudent(student)"><i class="fa-solid fa-xmark"></i> REJECT</button>
 
                 </td>

@@ -2,8 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddcourseComponent } from './addcourse/addcourse.component';
 import { AdminloginComponent } from './adminlogin/adminlogin.component';
+import { ApprovedstudentsComponent } from './approvedstudents/approvedstudents.component';
+import { ApprovestudentComponent } from './approvestudent/approvestudent.component';
+import { CreatealertComponent } from './createalert/createalert.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { MessageComponent } from './message/message.component';
 import { ProfessorDashboardComponent } from './professor-dashboard/professor-dashboard.component';
 import { ProfessorComponent } from './professor/professor.component';
 import { SignupComponent } from './signup/signup.component';
@@ -25,14 +29,19 @@ const routes: Routes = [
   {path:"student",component:StudentComponent,
     children:[
       {path:"",component:StudenthomeComponent},
-      {path:"enrollment",component:StudentEnrollComponent}
+      {path:"enrollment",component:StudentEnrollComponent},
+      {path:"message",component:MessageComponent}
+
   ]},
 
   {path:"professor",component:ProfessorComponent,
     children:[
        {path:"",component:ProfessorDashboardComponent},
        {path:"addcourse",component:AddcourseComponent},
-       {path:"studentrequest",component:StudentRequestsComponent}
+       {path:"studentrequest",component:StudentRequestsComponent},
+       {path:"approvestudent",component:ApprovestudentComponent},
+       {path:"alertstudent",component:CreatealertComponent},
+       {path:"approvedstudents",component:ApprovedstudentsComponent},
   ]}
 
 
