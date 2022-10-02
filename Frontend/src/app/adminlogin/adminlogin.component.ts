@@ -26,6 +26,7 @@ export class AdminloginComponent implements OnInit {
       if(res.status){
         localStorage.setItem('tokens' , res.tokens)
         localStorage.setItem('pname' , res.name)
+        localStorage.setItem('pemail' , res.email)
         this.route.navigate(['/professor'])
 
        }else{

@@ -21,5 +21,10 @@ export class StudentService {
     return this.http.get(`${this.server_address}/student/messagedata/${id}`)
   }
 
+  getprofile(id:any){
+    return this.http.get(`${this.server_address}/student/profiledata/${id}`)
+
+  }
+
 
 }

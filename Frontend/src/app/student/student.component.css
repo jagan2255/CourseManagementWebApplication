@@ -55,3 +55,9 @@ h4{
   .menuwidth{
     width: 50%;
   }
+
+  @media only screen and (max-width: 543px) {
+    .hddn {
+        display: none;    
+    }
+  }

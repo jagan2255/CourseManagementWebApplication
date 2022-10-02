@@ -45,4 +45,10 @@ export class ProfessorService {
     return this.http.post(`${this.server_address}/professor/bulknotification`,data)
    }
 
+   addcourse(data:any){
+    return this.http.post(`${this.server_address}/professor/addcourse`,data)
+
+   }
+
+
 }

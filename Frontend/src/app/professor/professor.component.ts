@@ -18,6 +18,8 @@ export class ProfessorComponent implements OnInit {
   }
 
   btnclk1(){
+    this.route.navigate(["/professor/profile"])
+
   }
 
   btnclk3(){
@@ -30,6 +32,8 @@ export class ProfessorComponent implements OnInit {
   }
 
   btnclk5(){
+    localStorage.clear()
+    this.route.navigate(["/login/professorlogin"])
   }
   
   btnclk6(){

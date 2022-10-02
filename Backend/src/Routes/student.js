@@ -1,12 +1,36 @@
 const express = require('express');
 const approveddata = require('../Model/ApprovedSchema');
 const router = express.Router();
+const jwt = require ("jsonwebtoken");
 const EnrollmentData = require("../Model/EnrollmentSchema");
 const notificationdata = require('../Model/NotificationSchema');
 
+// Middleware Fuction to verify Token send from FrontEnd 
+function verifyToken(req,res,next){
+  // console.log(req.headers)
+
+  if(!req.headers.authorization){
+     return res.status(401).send("Unauthorized Access")
+  }
+  var tokens = req.headers.authorization.split(' ')[1];
+ 
+ console.log(tokens)
+ if(tokens == "null"){
+     return res.status(401).send("Unauthorized Access")
+ }
+
+ var payload= jwt.verify(tokens , "secretkey")
+ console.log(payload)
+ if(!payload){
+     return res.status(401).send("Unauthorized Access")
+ }
+ req.userId = payload.subject
+      next()
+ }
 
 
-router.post("/enrollstudent" , (req,res)=>{
+
+router.post("/enrollstudent" ,verifyToken, (req,res)=>{
   res.header("Access-Control-Allow-Orgin", "*");
   res.header("Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS");
 
@@ -29,7 +53,7 @@ router.post("/enrollstudent" , (req,res)=>{
 })
 
 
-router.get("/messagedata/:id" , (req,res)=>{
+router.get("/messagedata/:id" ,verifyToken, (req,res)=>{
   res.header("Access-Control-Allow-Orgin", "*");
   res.header("Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS");
 
@@ -51,6 +75,32 @@ router.get("/messagedata/:id" , (req,res)=>{
    })
 
 })
+
+router.get("/profiledata/:id" ,verifyToken, (req,res)=>{
+  var id = req.params.id;
+  console.log(id)
+
+  approveddata.findOne({email:id}).then((data)=>{
+    // console.log(data)
+    res.send(data)
+  })
+
+})
+
+router.post('/checkverified', (req, res) => {
+  res.header("Access-Control-Allow-Orgin", "*");
+  res.header("Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS");
+
+  userid = req.body.id;
+  approveddata.findOne({ email: userid }).then((data) => {
+    if (data) {
+      res.send();
+    }
+    
+  })
+  
+ })
+
 
 
 

@@ -1,13 +1,38 @@
 const express = require('express');
 const approveddata = require('../Model/ApprovedSchema');
 const router = express.Router();
+const jwt = require ("jsonwebtoken");
+
 
 const coursedata = require("../Model/courseSchema");
 const enrollmentdata = require('../Model/EnrollmentSchema');
 const notificationdata = require('../Model/NotificationSchema');
 
+// Middleware Fuction to verify Token send from FrontEnd
+function verifyToken(req,res,next){
+  // console.log(req.headers)
 
-router.get("/getcount" , (req,res)=>{
+  if(!req.headers.authorization){
+     return res.status(401).send("Unauthorized Access")
+  }
+  var tokens = req.headers.authorization.split(' ')[2];
+ 
+ console.log(tokens)
+ if(tokens == "null"){
+     return res.status(401).send("Unauthorized Access")
+ }
+
+ var payload= jwt.verify(tokens , "hiddenkey")
+ console.log(payload)
+ if(!payload){
+     return res.status(401).send("Unauthorized Access")
+ }
+ req.userId = payload.subject
+      next()
+ }
+
+
+router.get("/getcount" , verifyToken , (req,res)=>{
   res.header("Access-Control-Allow-Orgin", "*");
   res.header("Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS");
 
@@ -27,7 +52,7 @@ router.get("/getcount" , (req,res)=>{
 })
 
 
-router.get("/getrequest" , (req,res)=>{
+router.get("/getrequest" , verifyToken ,(req,res)=>{
   res.header("Access-Control-Allow-Orgin", "*");
   res.header("Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS");
 
@@ -38,7 +63,7 @@ router.get("/getrequest" , (req,res)=>{
 })
 
 
-router.delete("/deletreq/:id" , (req,res)=>{
+router.delete("/deletreq/:id" ,verifyToken, (req,res)=>{
   res.header("Access-Control-Allow-Orgin", "*");
   res.header("Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS");
   
@@ -53,7 +78,7 @@ router.delete("/deletreq/:id" , (req,res)=>{
 
 
 
-router.get("/approvestudent/:id" , (req,res)=>{
+router.get("/approvestudent/:id" ,verifyToken, (req,res)=>{
   res.header("Access-Control-Allow-Orgin", "*");
   res.header("Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS");
   
@@ -67,7 +92,7 @@ router.get("/approvestudent/:id" , (req,res)=>{
 })
 
 
-router.post("/approveddata" , (req,res)=>{
+router.post("/approveddata" ,verifyToken, (req,res)=>{
   res.header("Access-Control-Allow-Orgin", "*");
   res.header("Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS");
   
@@ -106,14 +131,14 @@ router.post("/approveddata" , (req,res)=>{
 
 
 
-router.get("/getapproveddata" , (req,res)=>{
+router.get("/getapproveddata" ,verifyToken, (req,res)=>{
   approveddata.find().then((data)=>{
     res.send(data)
   })
 })
 
 
-router.delete("/deletapproved/:id" , (req,res)=>{
+router.delete("/deletapproved/:id" ,verifyToken, (req,res)=>{
   res.header("Access-Control-Allow-Orgin", "*");
   res.header("Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS");
   
@@ -126,7 +151,7 @@ router.delete("/deletapproved/:id" , (req,res)=>{
 })
 
 
-router.post("/bulknotification" , (req,res)=>{
+router.post("/bulknotification" ,verifyToken, (req,res)=>{
   res.header("Access-Control-Allow-Orgin", "*");
   res.header("Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS");
   
@@ -154,6 +179,21 @@ router.post("/bulknotification" , (req,res)=>{
 
 
 
+})
+
+router.post("/addcourse" ,verifyToken, (req,res)=>{
+  data = req.body;
+
+ var course={
+    title:data.course,
+    description: data.message,
+    image: data.imageurl,
+  }
+  console.log(course)
+
+  var ccdata =new coursedata(course)
+  ccdata.save();
+  res.send({ status: true, message: 'Success' })
 })
 
 

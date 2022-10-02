@@ -12,7 +12,7 @@ import { AdminloginComponent } from './adminlogin/adminlogin.component';
 import { StudentloginComponent } from './studentlogin/studentlogin.component';
 import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StudentComponent } from './student/student.component';
 import { ProfessorComponent } from './professor/professor.component';
 import { StudenthomeComponent } from './studenthome/studenthome.component';
@@ -23,7 +23,16 @@ import { StudentRequestsComponent } from './student-requests/student-requests.co
 import { ApprovestudentComponent } from './approvestudent/approvestudent.component';
 import { ApprovedstudentsComponent } from './approvedstudents/approvedstudents.component';
 import { CreatealertComponent } from './createalert/createalert.component';
-import { MessageComponent } from './message/message.component'
+import { MessageComponent } from './message/message.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
+import { StudentprofileComponent } from './studentprofile/studentprofile.component';
+import { StudentcourseComponent } from './studentcourse/studentcourse.component';
+import { ProfessorprofileComponent } from './professorprofile/professorprofile.component'
+import { AuthService } from './auth.service';
+import { ProfessorService } from './professor.service';
+import { StudentService } from './student.service';
+import { TokenInterceptorService } from './token-interceptor.service';
+import { Error404Component } from './error404/error404.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +55,12 @@ import { MessageComponent } from './message/message.component'
     ApprovestudentComponent,
     ApprovedstudentsComponent,
     CreatealertComponent,
-    MessageComponent
+    MessageComponent,
+    AboutusComponent,
+    StudentprofileComponent,
+    StudentcourseComponent,
+    ProfessorprofileComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,
@@ -54,7 +68,16 @@ import { MessageComponent } from './message/message.component'
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    ProfessorService,
+    StudentService,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptorService,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
